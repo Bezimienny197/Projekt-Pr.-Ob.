@@ -1,14 +1,20 @@
-package pl.java.mylibrary911;
+package pl.mycompany.mylibrary911;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-public class MainApp extends Application {
+/**
+ *
+ * @author Bezimienny197
+ */
+public class Main extends Application{
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -21,8 +27,4 @@ public class MainApp extends Application {
         primaryStage.show();
     }
     
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 }
