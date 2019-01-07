@@ -16,12 +16,13 @@ public class MainController implements Initializable {
     @FXML
     private BorderPane borderPane;
     
+    /* Kontroler TopMenuButtons */
     @FXML
     private TopMenuButtonsController topMenuButtonsController;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        topMenuButtonsController.setMainController(this);   // przekazuję referencję do TopMenuButtonsController
     }    
     
 }

@@ -1,5 +1,6 @@
 package pl.mycompany.mylibrary911;
 
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +19,14 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/MainScene.fxml"));
         
-        Scene scene = new Scene(root);
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");   // Dodaję ResourceBundle do aplikacji
+        loader.setResources(bundle);                                                                            //
         
-        primaryStage.setTitle("My Library 911");
+        Scene scene = new Scene(loader.load());
+        
+        primaryStage.setTitle(bundle.getString("title.application"));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
