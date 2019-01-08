@@ -6,13 +6,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
- * FXML Controller class
+ * FXML Controller class - Kontroler przycisków pod menu górnym
  *
- * @author Bezimienny197
+ * @author Aleksander Szepelak
  */
-/* Kontroler przycisków pod menu górnym */
 public class TopMenuButtonsController implements Initializable {
 
+    /* Ścieżki do plików FXML */
+    public static final String RENT_BOOK_FXML = "";
+    public static final String DATA_BASE_FXML = "";
+    
     /* Referencja do kontrolera głównego */
     private MainController mainController;
     
@@ -24,18 +27,13 @@ public class TopMenuButtonsController implements Initializable {
     /* Wypożycz książkę */
     @FXML
     public void openRentBook() {
-        
+        mainController.setCenter(RENT_BOOK_FXML);
     }
     
     /* Otwórz okno bazy danych */
     @FXML
     public void openDataBase() {
-        
-    }
-    
-    /* Ustaw okno w centralnej części BorderPane's */
-    public void setCenter(String fxmlPath) {
-        
+        mainController.setCenter(DATA_BASE_FXML);
     }
     
     public void setMainController(MainController mainController) {

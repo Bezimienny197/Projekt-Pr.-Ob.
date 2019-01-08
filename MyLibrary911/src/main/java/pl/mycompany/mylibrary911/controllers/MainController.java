@@ -12,14 +12,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import pl.mycompany.mylibrary911.dialogs.DialogsUtils;
+import pl.mycompany.mylibrary911.utils.DialogsUtils;
+import pl.mycompany.mylibrary911.utils.FXMLUtils;
 
 /**
- * FXML Controller class
+ * FXML Controller class - Kontroler główny
  *
- * @author Bezimienny197
+ * @author Aleksander Szepelak
  */
-/* Kontroler główny */
 public class MainController implements Initializable {
 
     @FXML
@@ -31,16 +31,22 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        topMenuButtonsController.setMainController(this);   // przekazuję referencję do TopMenuButtonsController
-    }    
+        topMenuButtonsController.setMainController(this);   // przekazuję referencję na tą klasę do TopMenuButtonsController
+    }
     
+    /* Ustaw okno w centralnej części BorderPane's */
+    public void setCenter(String fxmlPath) {
+        borderPane.setCenter(FXMLUtils.fxmlLoader(fxmlPath));
+    }
+    
+    /* ------------ Menu ------------ */
     /* Zamknij */
     @FXML
     public void closeApplication(ActionEvent actionEvent) {
-        Optional<ButtonType> result = DialogsUtils.dialogConfirmation();
+        Optional<ButtonType> result = DialogsUtils.confirmationDialog();
         if (result.get() == ButtonType.OK) {
             Platform.exit();
-        System.exit(0);
+            System.exit(0);
         }
     }
     
@@ -59,8 +65,8 @@ public class MainController implements Initializable {
     /* Zawsze na wierzchu */
     @FXML
     public void setAlwaysOnTop(ActionEvent actionEvent) {
-        Stage stage = (Stage) borderPane.getScene().getWindow();
-        boolean value = ((CheckMenuItem) actionEvent.getSource()).selectedProperty().get();
+        Stage stage = (Stage) borderPane.getScene().getWindow();                                            // Uzyskuję dostęp do Stage'a
+        boolean value = ((CheckMenuItem) actionEvent.getSource()).selectedProperty().get();   // Rzutuję action event na CheckMenuItem i uzyskuję dostęp do selectedProperty (wartości boolean)
         stage.setAlwaysOnTop(value);
     }
     
