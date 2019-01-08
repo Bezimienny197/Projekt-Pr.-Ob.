@@ -24,7 +24,9 @@ public class Main extends Application{
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");   // Dodaję ResourceBundle do aplikacji
         loader.setResources(bundle);                                                                            //
         
-        Scene scene = new Scene(loader.load());
+        Parent root = loader.load();
+        
+        Scene scene = new Scene(root);
         
         primaryStage.setTitle(bundle.getString("title.application"));
         primaryStage.setScene(scene);

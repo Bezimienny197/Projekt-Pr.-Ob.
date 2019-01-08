@@ -10,9 +10,10 @@ import javafx.fxml.Initializable;
  *
  * @author Bezimienny197
  */
+/* Kontroler przycisków pod menu górnym */
 public class TopMenuButtonsController implements Initializable {
 
-    /* Referencja do MainController'a */
+    /* Referencja do kontrolera głównego */
     private MainController mainController;
     
     @Override
@@ -20,13 +21,20 @@ public class TopMenuButtonsController implements Initializable {
         
     }
     
+    /* Wypożycz książkę */
     @FXML
     public void openRentBook() {
         
     }
     
+    /* Otwórz okno bazy danych */
     @FXML
     public void openDataBase() {
+        
+    }
+    
+    /* Ustaw okno w centralnej części BorderPane's */
+    public void setCenter(String fxmlPath) {
         
     }
     

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -14,13 +18,27 @@
               <menus>
                 <Menu mnemonicParsing="false" text="%file">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="%file.close" />
+                    <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="%file.close" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="%edit" />
+                <Menu mnemonicParsing="false" text="%edit">
+                     <items>
+                        <Menu mnemonicParsing="false" text="%edit.style">
+                           <items>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#setCaspian" text="%caspian">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="styleGroup" />
+                                 </toggleGroup>
+                              </RadioMenuItem>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#setModena" selected="true" text="%modena" toggleGroup="$styleGroup" />
+                           </items>
+                        </Menu>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <CheckMenuItem mnemonicParsing="false" onAction="#setAlwaysOnTop" text="%edit.aot" />
+                     </items></Menu>
                 <Menu mnemonicParsing="false" text="%help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="%help.about" />
+                    <MenuItem mnemonicParsing="false" onAction="#aboutApplication" text="%help.about" />
                   </items>
                 </Menu>
               </menus>
