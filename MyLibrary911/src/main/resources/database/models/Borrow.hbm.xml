@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-01-10 13:46:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pl.mycompany.mylibrary911.database.models.Borrow" table="borrow" catalog="biblioteka" optimistic-lock="version">
+        <id name="idBorrow" type="java.lang.Integer">
+            <column name="id_borrow" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="book" class="pl.mycompany.mylibrary911.database.models.Book" fetch="select">
+            <column name="id_book" not-null="true" />
+        </many-to-one>
+        <many-to-one name="reader" class="pl.mycompany.mylibrary911.database.models.Reader" fetch="select">
+            <column name="id_reader" not-null="true" />
+        </many-to-one>
+        <property name="dateOfRental" type="date">
+            <column name="date_of_rental" length="10" not-null="true" />
+        </property>
+        <property name="dateOfReturn" type="date">
+            <column name="date_of_return" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

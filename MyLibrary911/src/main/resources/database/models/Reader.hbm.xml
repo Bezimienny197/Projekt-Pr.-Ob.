@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-01-10 13:46:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pl.mycompany.mylibrary911.database.models.Reader" table="reader" catalog="biblioteka" optimistic-lock="version">
+        <id name="idReader" type="java.lang.Integer">
+            <column name="id_reader" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="64" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="64" not-null="true" />
+        </property>
+        <property name="phoneNumber" type="java.lang.Integer">
+            <column name="phone_number" />
+        </property>
+        <set name="borrows" table="borrow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_reader" not-null="true" />
+            </key>
+            <one-to-many class="pl.mycompany.mylibrary911.database.models.Borrow" />
+        </set>
+    </class>
+</hibernate-mapping>
