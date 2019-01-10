@@ -22,54 +22,62 @@ public class Reader  implements java.io.Serializable {
 
 	
     public Reader(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+    }
+     public Reader(String firstName, String lastName, Integer phoneNumber) {
+       this.setFirstName(firstName);
+       this.setLastName(lastName);
+       this.setPhoneNumber(phoneNumber);
     }
     public Reader(String firstName, String lastName, Integer phoneNumber, Set borrows) {
-       this.firstName = firstName;
-       this.lastName = lastName;
-       this.phoneNumber = phoneNumber;
-       this.borrows = borrows;
+       this.setFirstName(firstName);
+       this.setLastName(lastName);
+       this.setPhoneNumber(phoneNumber);
+       this.setBorrows(borrows);
     }
    
     public Integer getIdReader() {
         return this.idReader;
     }
-    
-    public void setIdReader(Integer idReader) {
+     public void setIdReader(Integer idReader) {
         this.idReader = idReader;
     }
+     
     public String getFirstName() {
         return this.firstName;
     }
-    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+    
     public String getLastName() {
         return this.lastName;
     }
-    
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
     public Integer getPhoneNumber() {
         return this.phoneNumber;
     }
-    
     public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if (phoneNumber > 0) {
+            this.phoneNumber = phoneNumber;
+        }
     }
+    
     public Set getBorrows() {
         return this.borrows;
     }
-    
     public void setBorrows(Set borrows) {
         this.borrows = borrows;
     }
 
-
-
+ @Override
+    public String toString() {
+        return this.getFirstName() + this.getLastName();
+    }
 
 }
 

@@ -3,22 +3,22 @@ package pl.mycompany.mylibrary911.database.dao;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import pl.mycompany.mylibrary911.database.models.Book;
 import pl.mycompany.mylibrary911.database.dbUtils.HibernateUtil;
+import pl.mycompany.mylibrary911.database.models.Reader;
 import pl.mycompany.mylibrary911.utils.DialogsUtils;
 
 /**
  *
- * @author Alesander Szepelak
+ * @author Aleksander Szepelak
  */
-public class BookDAO {
+public class ReaderDAO {
     
     /* Wstaw nowy rekord Book do bazy danych */
-    public static void addNewBook(Book book) {
+    public static void addNewReader(Reader reader) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
-            session.save(book);
+            session.save(reader);
             transaction.commit();
             session.close();
         } catch (Throwable ex) {
@@ -27,9 +27,9 @@ public class BookDAO {
     }
     
     /* Pobierz z bazy danych wszystkie encje */
-    public static List<Book> getAll() {
+    public static List<Reader> getAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Book> list = (List<Book>) session.createSQLQuery("SELECT * FROM book").addEntity(Book.class).list();
+        List<Reader> list = (List<Reader>) session.createSQLQuery("SELECT * FROM reader").addEntity(Reader.class).list();
         session.close();
         return list;
     }

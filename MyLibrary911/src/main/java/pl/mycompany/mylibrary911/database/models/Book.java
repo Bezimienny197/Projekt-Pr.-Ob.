@@ -24,18 +24,25 @@ public class Book  implements java.io.Serializable {
 
 	
     public Book(String title, String author, int publishmentYear, boolean borrowed) {
-        this.title = title;
-        this.author = author;
-        this.publishmentYear = publishmentYear;
-        this.borrowed = borrowed;
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.setPublishmentYear(publishmentYear);
+        this.setBorrowed(borrowed);
+    }
+      public Book(String title, String author, String publishingHouse, int publishmentYear, boolean borrowed) {
+       this.setTitle(title);
+       this.setAuthor(author);
+       this.setPublishingHouse(publishingHouse);
+       this.setPublishmentYear(publishmentYear);
+       this.setBorrowed(borrowed);
     }
     public Book(String title, String author, String publishingHouse, int publishmentYear, boolean borrowed, Set borrows) {
-       this.title = title;
-       this.author = author;
-       this.publishingHouse = publishingHouse;
-       this.publishmentYear = publishmentYear;
-       this.borrowed = borrowed;
-       this.borrows = borrows;
+       this.setTitle(title);
+       this.setAuthor(author);
+       this.setPublishingHouse(publishingHouse);
+       this.setPublishmentYear(publishmentYear);
+       this.setBorrowed(borrowed);
+       this.setBorrows(borrows);
     }
    
     public Integer getIdBook() {
@@ -88,8 +95,10 @@ public class Book  implements java.io.Serializable {
         this.borrows = borrows;
     }
 
-
-
+   @Override
+    public String toString() {
+        return this.getTitle() + this.getAuthor() + this.getPublishingHouse() + this.getPublishmentYear();
+    }
 
 }
 

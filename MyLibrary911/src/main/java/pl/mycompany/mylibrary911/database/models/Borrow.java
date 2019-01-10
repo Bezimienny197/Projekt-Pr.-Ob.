@@ -20,10 +20,10 @@ public class Borrow  implements java.io.Serializable {
     }
 
     public Borrow(Book book, Reader reader, Date dateOfRental, Date dateOfReturn) {
-       this.book = book;
-       this.reader = reader;
-       this.dateOfRental = dateOfRental;
-       this.dateOfReturn = dateOfReturn;
+       this.setBook(book);
+       this.setReader(reader);
+       this.setDateOfRental(dateOfRental);
+       this.setDateOfReturn(dateOfReturn);
     }
    
     public Integer getIdBorrow() {

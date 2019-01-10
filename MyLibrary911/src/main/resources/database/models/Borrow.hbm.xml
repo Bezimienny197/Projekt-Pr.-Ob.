@@ -18,7 +18,7 @@
             <column name="date_of_rental" length="10" not-null="true" />
         </property>
         <property name="dateOfReturn" type="date">
-            <column name="date_of_return" length="10" not-null="true" />
+            <column name="date_of_return" length="10" />
         </property>
     </class>
 </hibernate-mapping>
