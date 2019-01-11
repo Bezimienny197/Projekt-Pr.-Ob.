@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 /**
  * Klasa służąca do obsługi ResourceBundles
  *
- * @author osze2
+ * @author Alesander Szepelak
  */
 public class ResourceBundlesUtils {
     

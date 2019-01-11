@@ -5,10 +5,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import pl.mycompany.mylibrary911.utils.DialogsUtils;
+import pl.mycompany.mylibrary911.utils.ResourceBundlesUtils;
 
 /**
- * Hibernate Utility class with a convenient method to get Session Factory
- * object.
+ * Hibernate Utility class with a convenient method to get Session Factory object.
+ * Klasa służąca do połączenia z bazą danych.
  *
  * @author Aleksander Szepelak
  */
@@ -20,14 +21,12 @@ public class HibernateUtil {
     
     static {
         try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
             CONFIGURATION = new Configuration().configure("/database/cfg/hibernateMySQL.cfg.xml");
             SERVICE_REGISTRY = new StandardServiceRegistryBuilder().applySettings(CONFIGURATION.getProperties()).build();
             SESSION_FACTORY = CONFIGURATION.buildSessionFactory(SERVICE_REGISTRY);
         } catch (Throwable ex) {
             // Log the exception. 
-           DialogsUtils.errorDialog(ex.getMessage());
+           DialogsUtils.errorDialog(ResourceBundlesUtils.getResourceBundle().getString("ex.db.connection") + "\n" + ex.getMessage());
            throw new ExceptionInInitializerError(ex);
         }
     }
