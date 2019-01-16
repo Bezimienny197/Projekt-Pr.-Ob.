@@ -16,7 +16,7 @@ public class ReaderFX {
     private IntegerProperty phoneNumber = new SimpleIntegerProperty();
     private ObjectProperty<Set> borrows = new SimpleObjectProperty<>();
 
-    public IntegerProperty getIdReader() {
+    public IntegerProperty idReaderProperty() {
         return idReader;
     }
     public void setIdReader(IntegerProperty idReader) {
@@ -27,7 +27,7 @@ public class ReaderFX {
     }
     
 
-    public StringProperty getFirstName() {
+    public StringProperty firstNameProperty() {
         return firstName;
     }
     public void setFirstName(StringProperty firstName) {
@@ -37,7 +37,7 @@ public class ReaderFX {
         this.firstName.set(firstName);
     }
 
-    public StringProperty getLastName() {
+    public StringProperty lastNameProperty() {
         return lastName;
     }
     public void setLastName(StringProperty lastName) {
@@ -47,7 +47,7 @@ public class ReaderFX {
         this.lastName.set(lastName);
     }
 
-    public IntegerProperty getPhoneNumber() {
+    public IntegerProperty phoneNumberProperty() {
         return phoneNumber;
     }
     public void setPhoneNumber(IntegerProperty phoneNumber) {
@@ -57,7 +57,7 @@ public class ReaderFX {
         this.phoneNumber.set(phoneNumber);
     }
     
-    public ObjectProperty<Set> getBorrows() {
+    public ObjectProperty<Set> borrowsProperty() {
         return borrows;
     }
     public void setBorrows(ObjectProperty<Set> borrows) {
@@ -69,7 +69,7 @@ public class ReaderFX {
 
     @Override
     public String toString() {
-        return this.getFirstName().getValue() + " " + this.getLastName().getValue();
+        return this.firstNameProperty().getValue() + " " + this.lastNameProperty().getValue();
     }
     
 }

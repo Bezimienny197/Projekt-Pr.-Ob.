@@ -15,11 +15,11 @@ public class ReaderConverter {
     public static Reader toReader(ReaderFX readerFX) {
         Reader reader = new Reader();
         
-        reader.setIdReader(readerFX.getIdReader().getValue());
-        reader.setFirstName(readerFX.getFirstName().getValue());
-        reader.setLastName(readerFX.getLastName().getValue());
-        reader.setPhoneNumber(readerFX.getPhoneNumber().getValue());
-        reader.setBorrows(readerFX.getBorrows().getValue());
+        reader.setIdReader(readerFX.idReaderProperty().getValue());
+        reader.setFirstName(readerFX.firstNameProperty().getValue());
+        reader.setLastName(readerFX.lastNameProperty().getValue());
+        reader.setPhoneNumber(readerFX.phoneNumberProperty().getValue());
+        reader.setBorrows(readerFX.borrowsProperty().getValue());
 
         return reader;
     }

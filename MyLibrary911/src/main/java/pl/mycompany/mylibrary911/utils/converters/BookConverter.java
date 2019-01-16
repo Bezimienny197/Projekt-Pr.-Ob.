@@ -15,13 +15,13 @@ public class BookConverter {
     public static Book toBook(BookFX bookFX) {
         Book book = new Book();
         
-        book.setIdBook(bookFX.getIdBook().getValue());
-        book.setTitle(bookFX.getTitle().getValue());
-        book.setAuthor(bookFX.getAuthor().getValue());
-        book.setPublishingHouse(bookFX.getPublishingHouse().getValue());
-        book.setPublishmentYear(bookFX.getPublishmentYear().getValue());
-        book.setBorrowed(bookFX.getBorrowed().getValue());
-        book.setBorrows(bookFX.getBorrows().getValue());
+        book.setIdBook(bookFX.idBookProperty().getValue());
+        book.setTitle(bookFX.titleProperty().getValue());
+        book.setAuthor(bookFX.authorProperty().getValue());
+        book.setPublishingHouse(bookFX.publishingHouseProperty().getValue());
+        book.setPublishmentYear(bookFX.publishmentYearProperty().getValue());
+        book.setBorrowed(bookFX.borrowedProperty().getValue());
+        book.setBorrows(bookFX.borrowsProperty().getValue());
 
         return book;
     }

@@ -19,7 +19,7 @@ public class ReaderModel {
     private ObservableList<ReaderFX> readerList = FXCollections.observableArrayList();
     private ObjectProperty<ReaderFX> reader = new SimpleObjectProperty();
 
-    public ObservableList<ReaderFX> getBookList() {
+    public ObservableList<ReaderFX> getReaderList() {
         return readerList;
     }
     public void setReaderList(ObservableList<ReaderFX> readerList) {

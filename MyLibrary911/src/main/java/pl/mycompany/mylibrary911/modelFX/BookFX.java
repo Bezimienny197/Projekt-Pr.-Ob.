@@ -18,7 +18,7 @@ public class BookFX {
     private BooleanProperty borrowed = new SimpleBooleanProperty();
     private ObjectProperty<Set> borrows = new SimpleObjectProperty<>();
 
-    public IntegerProperty getIdBook() {
+    public IntegerProperty idBookProperty() {
         return idBook;
     }
     public void setIdBook(IntegerProperty idBook) {
@@ -28,7 +28,7 @@ public class BookFX {
         this.idBook.set(idBook);
     }
 
-    public StringProperty getTitle() {
+    public StringProperty titleProperty() {
         return title;
     }
     public void setTitle(StringProperty title) {
@@ -38,7 +38,7 @@ public class BookFX {
         this.title.set(title);
     }
 
-    public StringProperty getAuthor() {
+    public StringProperty authorProperty() {
         return author;
     }
     public void setAuthor(StringProperty author) {
@@ -48,7 +48,7 @@ public class BookFX {
         this.author.set(author);
     }
 
-    public StringProperty getPublishingHouse() {
+    public StringProperty publishingHouseProperty() {
         return publishingHouse;
     }
     public void setPublishingHouse(StringProperty publishingHouse) {
@@ -58,7 +58,7 @@ public class BookFX {
         this.publishingHouse.set(publishingHouse);
     }
 
-    public IntegerProperty getPublishmentYear() {
+    public IntegerProperty publishmentYearProperty() {
         return publishmentYear;
     }
     public void setPublishmentYear(IntegerProperty publishmentYear) {
@@ -68,7 +68,7 @@ public class BookFX {
         this.publishmentYear.set(publishmentYear);
     }
 
-    public BooleanProperty getBorrowed() {
+    public BooleanProperty borrowedProperty() {
         return borrowed;
     }
     public void setBorrowed(BooleanProperty borrowed) {
@@ -78,7 +78,7 @@ public class BookFX {
         this.borrowed.set(borrowed);
     }
 
-    public ObjectProperty<Set> getBorrows() {
+    public ObjectProperty<Set> borrowsProperty() {
         return borrows;
     }
     public void setBorrows(ObjectProperty<Set> borrows) {
@@ -90,12 +90,12 @@ public class BookFX {
    
    @Override
     public String toString() {
-        return this.getBookName() + " " + this.getPublishingHouse().getValue() + " " + this.getPublishmentYear().getValue();
+        return this.getBookName() + " " + this.publishingHouseProperty().getValue() + " " + this.publishmentYearProperty().getValue();
     }
 
     /** Zwraca tytół i autora książki */
     public String getBookName() {
-        return "\"" + this.getTitle().getValue() + "\" " + this.getAuthor().getValue();
+        return "\"" + this.titleProperty().getValue() + "\" " + this.authorProperty().getValue();
     }
     
 }

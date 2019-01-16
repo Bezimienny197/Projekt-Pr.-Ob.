@@ -1,28 +1,33 @@
 package pl.mycompany.mylibrary911.controllers;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import pl.mycompany.mylibrary911.modelFX.BookFX;
 import pl.mycompany.mylibrary911.modelFX.BookModel;
+import pl.mycompany.mylibrary911.modelFX.BorrowFX;
+import pl.mycompany.mylibrary911.modelFX.BorrowModel;
+import pl.mycompany.mylibrary911.modelFX.ReaderFX;
+import pl.mycompany.mylibrary911.modelFX.ReaderModel;
 import pl.mycompany.mylibrary911.utils.DialogsUtils;
 import pl.mycompany.mylibrary911.utils.exceptions.ApplicationException;
 
 /**
- * FXML Controller class - kontroler okienka z tabelami
+ * FXML Controller class - kontroler okna z tabelami
  *
  * @author Aleksander Szepelak
  */
 public class DBSceneController implements Initializable {
 
+    /* Tabela książek */
     @FXML
     private TableView<BookFX> bookTableView;
     @FXML
-    private TableColumn<BookFX, Integer> idBookColumn;
+    private TableColumn<BookFX, Number> idBookColumn;
     @FXML
     private TableColumn<BookFX, String> titleColumn;
     @FXML
@@ -30,26 +35,67 @@ public class DBSceneController implements Initializable {
     @FXML
     private TableColumn<BookFX, String> publishingHouseColumn;
     @FXML
-    private TableColumn<BookFX, Integer> publishmentYearColumn;
+    private TableColumn<BookFX, Number> publishmentYearColumn;
     @FXML
     private TableColumn<BookFX, Boolean> borrowedColumn;
     
-    private BookModel bookModel;
-    
+    /* Tabela czytelników */
     @FXML
-    private ListView<BookFX> listView;
+    private TableView<ReaderFX> readerTableView;
+    @FXML
+    private TableColumn<ReaderFX, Number> idReaderColumn;
+    @FXML
+    private TableColumn<ReaderFX, String> firstNameColumn;
+    @FXML
+    private TableColumn<ReaderFX, String> lastNameColumn;
+    @FXML
+    private TableColumn<ReaderFX, Number> phoneNumberColumn;
+    
+    /* Tabela wypożyczeń */
+    @FXML
+    private TableView<BorrowFX> borrowsTableView;
+    @FXML
+    private TableColumn<BorrowFX, String> bookColumn;
+    @FXML
+    private TableColumn<BorrowFX, String> readerColumn;
+    @FXML
+    private TableColumn<BorrowFX, Date> dateOfRentalColumn;
+    @FXML
+    private TableColumn<BorrowFX, Date> dateOfReturnColumn;
+    
+    /* Modele danych */
+    private BookModel bookModel;
+    private ReaderModel readerModel;
+    private BorrowModel borrowModel;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         bookModel = new BookModel();
+        readerModel = new ReaderModel();
+        borrowModel = new BorrowModel();
+        
         try {
             bookModel.initObservableList();
         } catch (ApplicationException ex) {
             DialogsUtils.errorDialog(ex.getMessage());
         }
-        listView.setItems(this.bookModel.getBookList());
-        bookTableView.setItems(this.bookModel.getBookList());
         
+        /* Łączenie tabeli bookTableView z listą pobraną z modelu danych */
+        this.bookTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.bookTableView.setItems(this.bookModel.getBookList());
+        this.idBookColumn.setCellValueFactory(cellData-> cellData.getValue().idBookProperty());
+        this.titleColumn.setCellValueFactory(cellData-> cellData.getValue().titleProperty());
+        this.authorColumn.setCellValueFactory(cellData-> cellData.getValue().authorProperty());
+        this.publishingHouseColumn.setCellValueFactory(cellData-> cellData.getValue().publishingHouseProperty());
+        this.publishmentYearColumn.setCellValueFactory(cellData-> cellData.getValue().publishmentYearProperty());
+        
+        /* Łączenie tabeli readerTableView z listą pobraną z modelu danych */
+        this.readerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.readerTableView.setItems(this.readerModel.getReaderList());
+        this.idReaderColumn.setCellValueFactory(cellData-> cellData.getValue().idReaderProperty());
+        this.firstNameColumn.setCellValueFactory(cellData-> cellData.getValue().firstNameProperty());
+        this.lastNameColumn.setCellValueFactory(cellData-> cellData.getValue().lastNameProperty());
+        this.phoneNumberColumn.setCellValueFactory(cellData-> cellData.getValue().phoneNumberProperty());
     }    
     
 }
