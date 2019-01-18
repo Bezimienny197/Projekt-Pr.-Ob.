@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
 public class DialogsUtils {
    static  ResourceBundle bundle = ResourceBundlesUtils.getResourceBundle();
     
-   /* Okno dialogowe O aplikacji */
+   /** Okno dialogowe O aplikacji */
     public static void dialogAboutApplication() {
         Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
         informationAlert.setTitle(bundle.getString("about.title"));
@@ -24,7 +24,7 @@ public class DialogsUtils {
         informationAlert.showAndWait();
     }
     
-    /* Okno dialogowe Zamknij */
+    /** Okno dialogowe Zamknij */
     public static Optional<ButtonType> confirmationDialog() {
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle(bundle.getString("exit.title"));
@@ -34,7 +34,7 @@ public class DialogsUtils {
         return result;
     }
     
-    /* Okno dialogowe błędów */
+    /** Okno dialogowe błędów */
     public static void errorDialog(String error) {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle(bundle.getString("error.title"));
@@ -46,4 +46,11 @@ public class DialogsUtils {
         errorAlert.showAndWait();
     }
     
+    public static void shortErrorDialog(String error) {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle(bundle.getString("error.title"));
+        errorAlert.setHeaderText(error);
+        
+        errorAlert.showAndWait();
+    }
 }

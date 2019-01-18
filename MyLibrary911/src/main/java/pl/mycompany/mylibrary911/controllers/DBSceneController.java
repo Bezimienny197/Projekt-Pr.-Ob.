@@ -89,6 +89,12 @@ public class DBSceneController implements Initializable {
         this.publishingHouseColumn.setCellValueFactory(cellData-> cellData.getValue().publishingHouseProperty());
         this.publishmentYearColumn.setCellValueFactory(cellData-> cellData.getValue().publishmentYearProperty());
         
+        try {
+            readerModel.initObservableList();
+        } catch (ApplicationException ex) {
+            DialogsUtils.errorDialog(ex.getMessage());
+        }
+        
         /* Łączenie tabeli readerTableView z listą pobraną z modelu danych */
         this.readerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.readerTableView.setItems(this.readerModel.getReaderList());

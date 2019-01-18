@@ -63,9 +63,7 @@ public class Reader  implements java.io.Serializable {
         return this.phoneNumber;
     }
     public void setPhoneNumber(Integer phoneNumber) {
-        if (phoneNumber > 0) {
             this.phoneNumber = phoneNumber;
-        }
     }
     
     public Set getBorrows() {

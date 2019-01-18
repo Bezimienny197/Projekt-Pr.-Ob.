@@ -15,6 +15,8 @@ public class TopMenuButtonsController implements Initializable {
     /* Ścieżki do plików FXML */
     public static final String RENT_BOOK_FXML = "";
     public static final String DATA_BASE_FXML = "/fxml/DBScene.fxml";
+    public static final String ADD_BOOK_FXML = "/fxml/AddBook.fxml";
+    public static final String ADD_READER_FXML = "/fxml/AddReader.fxml";
     
     /* Referencja do kontrolera głównego (potrzebna do ustawiania centralnej części BorderPane'a*/
     private MainController mainController;
@@ -38,9 +40,12 @@ public class TopMenuButtonsController implements Initializable {
     
     @FXML
     public void addNewBook() {
-        /* Book book = new Book("Pan Tadeusz", "Adam Mickiewicz", 2002 , false);
-        BookDAO.addNewBook(book); */
-        
+        mainController.setCenter(ADD_BOOK_FXML);
+     }
+    
+    @FXML
+    public void addNewReader() {
+        mainController.setCenter(ADD_READER_FXML);
      }
     
     public void setMainController(MainController mainController) {
