@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import pl.mycompany.mylibrary911.modelFX.BookFX;
@@ -38,6 +39,8 @@ public class DBSceneController implements Initializable {
     private TableColumn<BookFX, Number> publishmentYearColumn;
     @FXML
     private TableColumn<BookFX, Boolean> borrowedColumn;
+    @FXML
+    private MenuItem deleteBookMenuItem;
     
     /* Tabela czytelników */
     @FXML
@@ -49,7 +52,9 @@ public class DBSceneController implements Initializable {
     @FXML
     private TableColumn<ReaderFX, String> lastNameColumn;
     @FXML
-    private TableColumn<ReaderFX, Number> phoneNumberColumn;
+    private TableColumn<ReaderFX, Integer> phoneNumberColumn;
+    @FXML
+    private MenuItem deleteReaderMenuItem;
     
     /* Tabela wypożyczeń */
     @FXML
@@ -74,8 +79,41 @@ public class DBSceneController implements Initializable {
         readerModel = new ReaderModel();
         borrowModel = new BorrowModel();
         
+        /* Bindowanie tabel */
+        this.bindingBookTableView();
+        this.bindingReaderTableView();
+        
+        /* Bindowanie propertisów przycisków */
+        this.deleteBookMenuItem.disableProperty().bind(this.bookTableView.getSelectionModel().selectedItemProperty().isNull());
+        this.deleteReaderMenuItem.disableProperty().bind(this.readerTableView.getSelectionModel().selectedItemProperty().isNull());
+        
+        /* Bindowanie propertisów modeli danych z propertisami z tabel */
+        this.bookModel.BookProperty().bind(this.bookTableView.getSelectionModel().selectedItemProperty());
+        this.readerModel.ReaderProperty().bind(this.readerTableView.getSelectionModel().selectedItemProperty());
+    }    
+    
+    @FXML
+    public void deleteBookMenuAction() {
         try {
-            bookModel.initObservableList();
+            this.bookModel.deleteSelectedBookFromDataBase();
+        } catch (ApplicationException ex) {
+            DialogsUtils.errorDialog(ex.getMessage());
+        }
+    }
+    
+    @FXML
+    public void deleteReaderMenuAction() {
+        try {
+            this.readerModel.deleteSelectedReaderFromDataBase();
+        } catch (ApplicationException ex) {
+            DialogsUtils.errorDialog(ex.getMessage());
+        }
+    }
+    
+    
+    public void bindingBookTableView() {
+        try {
+            this.bookModel.initObservableList();
         } catch (ApplicationException ex) {
             DialogsUtils.errorDialog(ex.getMessage());
         }
@@ -88,9 +126,11 @@ public class DBSceneController implements Initializable {
         this.authorColumn.setCellValueFactory(cellData-> cellData.getValue().authorProperty());
         this.publishingHouseColumn.setCellValueFactory(cellData-> cellData.getValue().publishingHouseProperty());
         this.publishmentYearColumn.setCellValueFactory(cellData-> cellData.getValue().publishmentYearProperty());
-        
+    }
+    
+    public void bindingReaderTableView() {
         try {
-            readerModel.initObservableList();
+            this.readerModel.initObservableList();
         } catch (ApplicationException ex) {
             DialogsUtils.errorDialog(ex.getMessage());
         }
@@ -102,6 +142,6 @@ public class DBSceneController implements Initializable {
         this.firstNameColumn.setCellValueFactory(cellData-> cellData.getValue().firstNameProperty());
         this.lastNameColumn.setCellValueFactory(cellData-> cellData.getValue().lastNameProperty());
         this.phoneNumberColumn.setCellValueFactory(cellData-> cellData.getValue().phoneNumberProperty());
-    }    
+    }
     
 }

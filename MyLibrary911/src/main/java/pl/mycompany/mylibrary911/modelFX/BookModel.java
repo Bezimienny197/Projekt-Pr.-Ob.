@@ -16,7 +16,7 @@ import pl.mycompany.mylibrary911.utils.exceptions.ApplicationException;
  */
 public class BookModel {
     private ObservableList<BookFX> bookList = FXCollections.observableArrayList();
-    private ObjectProperty<BookFX> book = new SimpleObjectProperty();
+    private ObjectProperty<BookFX> bookProperty = new SimpleObjectProperty();
 
     public ObservableList<BookFX> getBookList() {
         return bookList;
@@ -25,13 +25,13 @@ public class BookModel {
         this.bookList = bookList;
     }
 
-    public ObjectProperty<BookFX> getBook() {
-        return book;
+    public ObjectProperty<BookFX> BookProperty() {
+        return bookProperty;
     }
-    public void setBook(ObjectProperty<BookFX> book) {
-        this.book = book;
+    public void setBookProperty(ObjectProperty<BookFX> book) {
+        this.bookProperty = book;
     }
-    
+
     /** Metoda inicjalizująca ObservableList z bazy danych */
     public void initObservableList() throws ApplicationException {
         this.bookList.clear();
@@ -55,6 +55,12 @@ public class BookModel {
     /** Metoda usówająca książkę (Book) z bazy danych i odświeżająca listę */
     public void deleteBookFromDataBase(BookFX locBookFX) throws ApplicationException {
         BookDAO.delete(BookConverter.toBook(locBookFX));
+        this.initObservableList();
+    }
+    
+    /** Metoda usówająca wybraną książkę (Book) z bazy danych i odświeżająca listę */
+    public void deleteSelectedBookFromDataBase() throws ApplicationException {
+        BookDAO.delete(BookConverter.toBook(this.bookProperty.getValue()));
         this.initObservableList();
     }
     

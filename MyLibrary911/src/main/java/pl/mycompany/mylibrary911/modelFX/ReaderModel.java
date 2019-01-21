@@ -17,7 +17,7 @@ import pl.mycompany.mylibrary911.utils.exceptions.ApplicationException;
  */
 public class ReaderModel {
     private ObservableList<ReaderFX> readerList = FXCollections.observableArrayList();
-    private ObjectProperty<ReaderFX> reader = new SimpleObjectProperty();
+    private ObjectProperty<ReaderFX> readerProperty = new SimpleObjectProperty();
 
     public ObservableList<ReaderFX> getReaderList() {
         return readerList;
@@ -26,11 +26,11 @@ public class ReaderModel {
         this.readerList = readerList;
     }
 
-    public ObjectProperty<ReaderFX> getReader() {
-        return reader;
+    public ObjectProperty<ReaderFX> ReaderProperty() {
+        return readerProperty;
     }
-    public void setReader(ObjectProperty<ReaderFX> reader) {
-        this.reader = reader;
+    public void setReaderProperty(ObjectProperty<ReaderFX> readerProperty) {
+        this.readerProperty = readerProperty;
     }
     
     /** Metoda inicjalizująca ObservableList z bazy danych */
@@ -56,6 +56,12 @@ public class ReaderModel {
     /** Metoda usówająca czytelnika (Reader) z bazy danych i odświeżająca listę */
     public void deleteReaderFromDataBase(ReaderFX locReaderFX) throws ApplicationException {
         ReaderDAO.delete(ReaderConverter.toReader(locReaderFX));
+        this.initObservableList();
+    }
+    
+    /** Metoda usówająca wybranego czytelnika (Reader) z bazy danych i odświeżająca listę */
+    public void deleteSelectedReaderFromDataBase() throws ApplicationException {
+        ReaderDAO.delete(ReaderConverter.toReader(this.readerProperty.getValue()));
         this.initObservableList();
     }
     
