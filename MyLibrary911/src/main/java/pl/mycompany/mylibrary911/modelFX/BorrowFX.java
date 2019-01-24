@@ -18,7 +18,7 @@ public class BorrowFX {
     private ObjectProperty<Date> dateOfRental = new SimpleObjectProperty<>();
     private ObjectProperty<Date> dateOfReturn = new SimpleObjectProperty<>();
 
-    public IntegerProperty getIdBorrow() {
+    public IntegerProperty idBorrowProperty() {
         return idBorrow;
     }
     public void setIdBorrow(IntegerProperty idBorrow) {
@@ -28,7 +28,7 @@ public class BorrowFX {
         this.idBorrow.set(idBorrow);
     }
 
-    public ObjectProperty<Book> getBook() {
+    public ObjectProperty<Book> bookProperty() {
         return book;
     }
     public void setBook(ObjectProperty<Book> book) {
@@ -38,7 +38,7 @@ public class BorrowFX {
         this.book.set(book);
     }
 
-    public ObjectProperty<Reader> getReader() {
+    public ObjectProperty<Reader> readerProperty() {
         return reader;
     }
     public void setReader(ObjectProperty<Reader> reader) {
@@ -48,7 +48,7 @@ public class BorrowFX {
         this.reader.set(reader);
     }
 
-    public ObjectProperty<Date> getDateOfRental() {
+    public ObjectProperty<Date> dateOfRentalProperty() {
         return dateOfRental;
     }
     public void setDateOfRental(ObjectProperty<Date> dateOfRental) {
@@ -58,22 +58,22 @@ public class BorrowFX {
         this.dateOfRental.set(dateOfRental);
     }
 
-    public ObjectProperty<Date> getDateOfReturn() {
+    public ObjectProperty<Date> dateOfReturnProperty() {
         return dateOfReturn;
     }
     public void setDateOfReturn(ObjectProperty<Date> dateOfReturn) {
         this.dateOfReturn = dateOfReturn;
     }
     public void setDateOfReturn(Date dateOfReturn) {
-        this.dateOfReturn.set(dateOfReturn);
+        this.dateOfReturn.setValue(dateOfReturn);
     }
-    
+
     @Override
     public String toString() {
         if (dateOfReturn.equals(null)) {
-            return this.getBook().getValue().getBookName() + " wypożyczona przzez " + this.getReader().getValue().toString() + "dnia: " + this.getDateOfRental().getValue().toString();
+            return this.bookProperty().getValue().getBookName() + " wypożyczona przzez " + this.readerProperty().getValue().toString() + "dnia: " + this.dateOfRentalProperty().getValue().toString();
         } else {
-            return this.getBook().getValue().getBookName() + " wypożyczona przzez " + this.getReader().getValue().toString() + "dnia: " + this.getDateOfRental().getValue().toString() + ", zwrócona dnia " + this.getDateOfReturn().getValue().toString();
+            return this.bookProperty().getValue().getBookName() + " wypożyczona przzez " + this.readerProperty().getValue().toString() + "dnia: " + this.dateOfRentalProperty().getValue().toString() + ", zwrócona dnia " + this.dateOfReturnProperty().getValue().toString();
         }
     }
 }

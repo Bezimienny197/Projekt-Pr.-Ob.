@@ -27,6 +27,19 @@ public class BorrowDAO {
         }
     }
     
+    /** Zaktualizuj wybrany rekord Borrow w bazie danych */
+    public static void update(Borrow borrow) throws ApplicationException {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transaction = session.beginTransaction();
+            session.update(borrow);
+            transaction.commit();
+            session.close();
+        } catch (Throwable ex) {
+            throw new ApplicationException(ResourceBundlesUtils.getResourceBundle().getString("ex.db.update.borrow") + "\n" + ex.getMessage());
+        }
+    }
+    
     /** Usuń wybrany rekord Borrow z bazy danych */
     public static void delete(Borrow borrow) throws ApplicationException {
         try {

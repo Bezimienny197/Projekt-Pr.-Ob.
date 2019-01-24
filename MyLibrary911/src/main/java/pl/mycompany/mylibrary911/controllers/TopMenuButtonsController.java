@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 public class TopMenuButtonsController implements Initializable {
 
     /* Ścieżki do plików FXML */
-    public static final String RENT_BOOK_FXML = "";
+    public static final String RENT_BOOK_FXML = "/fxml/RentBook.fxml";
     public static final String DATA_BASE_FXML = "/fxml/DBScene.fxml";
     public static final String ADD_BOOK_FXML = "/fxml/AddBook.fxml";
     public static final String ADD_READER_FXML = "/fxml/AddReader.fxml";

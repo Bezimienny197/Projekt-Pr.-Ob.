@@ -1,6 +1,8 @@
 package pl.mycompany.mylibrary911.utils;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
@@ -18,6 +20,7 @@ public class FXMLUtils {
             return loader.load();
         } catch (IOException ex) {
             DialogsUtils.errorDialog(ex.getMessage());
+            Logger.getLogger(FXMLUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

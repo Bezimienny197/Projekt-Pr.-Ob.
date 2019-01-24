@@ -28,6 +28,19 @@ public class BookDAO {
         }
     }
     
+    /** Zaktualizuj wybrany rekord Book w bazie danych */
+    public static void update(Book book) throws ApplicationException {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transaction = session.beginTransaction();
+            session.update(book);
+            transaction.commit();
+            session.close();
+        } catch (Throwable ex) {
+            throw new ApplicationException(ResourceBundlesUtils.getResourceBundle().getString("ex.db.update.book") + "\n" + ex.getMessage());
+        }
+    }
+    
     /** Usuń podany rekord Book z bazy danych */
     public static void delete(Book book) throws ApplicationException {
         try {
@@ -46,6 +59,19 @@ public class BookDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             ArrayList<Book> list = (ArrayList<Book>) session.createSQLQuery("SELECT * FROM book").addEntity(Book.class).list();
+            session.close();
+            return list;
+        } catch (Throwable ex) {
+            throw new ApplicationException(ResourceBundlesUtils.getResourceBundle().getString("ex.db.queryForAll.book") + "\n" + ex.getMessage());
+        }
+    }
+    
+    
+    /** Pobierz z bazy danych wszystkie encje */
+    public static ArrayList<Book> qeryForNotBorrowed() throws ApplicationException {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            ArrayList<Book> list = (ArrayList<Book>) session.createSQLQuery("SELECT * FROM book WHERE borrowed='0'").addEntity(Book.class).list();
             session.close();
             return list;
         } catch (Throwable ex) {

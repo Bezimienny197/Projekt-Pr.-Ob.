@@ -69,7 +69,7 @@ public class ReaderFX {
 
     @Override
     public String toString() {
-        return this.firstNameProperty().getValue() + " " + this.lastNameProperty().getValue();
+        return Integer.toString(this.idReader.getValue()) + " " + this.firstNameProperty().getValue() + " " + this.lastNameProperty().getValue();
     }
     
 }

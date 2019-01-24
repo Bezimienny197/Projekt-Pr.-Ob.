@@ -8,10 +8,10 @@
             <column name="id_borrow" />
             <generator class="identity" />
         </id>
-        <many-to-one name="book" class="pl.mycompany.mylibrary911.database.models.Book" fetch="select">
+        <many-to-one name="book" class="pl.mycompany.mylibrary911.database.models.Book" lazy="false" fetch="select">
             <column name="id_book" not-null="true" />
         </many-to-one>
-        <many-to-one name="reader" class="pl.mycompany.mylibrary911.database.models.Reader" fetch="select">
+        <many-to-one name="reader" class="pl.mycompany.mylibrary911.database.models.Reader" lazy="false" fetch="select">
             <column name="id_reader" not-null="true" />
         </many-to-one>
         <property name="dateOfRental" type="date">

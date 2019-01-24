@@ -18,12 +18,12 @@
                      <children>
                         <TableView fx:id="bookTableView" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                           <columns>
-                            <TableColumn fx:id="idBookColumn" maxWidth="500.0" prefWidth="120.0" text="%booksTab.idBook" />
-                            <TableColumn fx:id="titleColumn" maxWidth="500.0" prefWidth="120.0" text="%booksTab.title" />
-                              <TableColumn fx:id="authorColumn" maxWidth="500.0" prefWidth="120.0" text="%booksTab.author" />
-                              <TableColumn fx:id="publishingHouseColumn" maxWidth="500.0" prefWidth="120.0" text="%booksTab.publishingHouse" />
-                              <TableColumn fx:id="publishmentYearColumn" maxWidth="500.0" prefWidth="132.0" text="%booksTab.publishmentYear" />
-                              <TableColumn fx:id="borrowedColumn" maxWidth="500.0" prefWidth="120.0" text="%booksTab.borrowed" />
+                            <TableColumn fx:id="idBookColumn" editable="false" maxWidth="500.0" prefWidth="120.0" text="%booksTab.idBook" />
+                            <TableColumn fx:id="titleColumn" maxWidth="500.0" onEditCommit="#titleEdit" prefWidth="120.0" text="%booksTab.title" />
+                              <TableColumn fx:id="authorColumn" maxWidth="500.0" onEditCommit="#authorEdit" prefWidth="120.0" text="%booksTab.author" />
+                              <TableColumn fx:id="publishingHouseColumn" maxWidth="500.0" onEditCommit="#publishingHouseEdit" prefWidth="120.0" text="%booksTab.publishingHouse" />
+                              <TableColumn fx:id="publishmentYearColumn" maxWidth="500.0" onEditCommit="#publishmentYearEdit" prefWidth="132.0" text="%booksTab.publishmentYear" />
+                              <TableColumn fx:id="borrowedColumn" editable="false" maxWidth="500.0" prefWidth="120.0" text="%booksTab.borrowed" />
                           </columns>
                            <contextMenu>
                               <ContextMenu>
@@ -44,9 +44,9 @@
                         <TableView fx:id="readerTableView" layoutX="48.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                           <columns>
                             <TableColumn fx:id="idReaderColumn" prefWidth="96.0" text="%readersTab.idReader" />
-                            <TableColumn fx:id="firstNameColumn" prefWidth="178.0" text="%readersTab.firstName" />
-                              <TableColumn fx:id="lastNameColumn" prefWidth="143.0" text="%readersTab.lastName" />
-                              <TableColumn fx:id="phoneNumberColumn" prefWidth="162.0" text="%readersTab.phoneNumber" />
+                            <TableColumn fx:id="firstNameColumn" onEditCommit="#firstNameEdit" prefWidth="178.0" text="%readersTab.firstName" />
+                              <TableColumn fx:id="lastNameColumn" onEditCommit="#lastNameEdit" prefWidth="143.0" text="%readersTab.lastName" />
+                              <TableColumn fx:id="phoneNumberColumn" onEditCommit="#phoneNumberEdit" prefWidth="162.0" text="%readersTab.phoneNumber" />
                           </columns>
                            <contextMenu>
                               <ContextMenu>
@@ -65,11 +65,18 @@
                      <children>
                         <TableView fx:id="borrowsTableView" layoutX="173.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                           <columns>
-                            <TableColumn fx:id="bookColumn" prefWidth="127.0" text="%borrowsTab.dateOfRental" />
-                            <TableColumn fx:id="readerColumn" prefWidth="136.0" text="%borrowsTab.dateOfReturn" />
-                              <TableColumn fx:id="dateOfRentalColumn" prefWidth="184.0" text="%borrowsTab.book" />
-                              <TableColumn fx:id="dateOfReturnColumn" prefWidth="132.0" text="%borrowsTab.reader" />
+                            <TableColumn fx:id="dateOfRentalColumn" prefWidth="100.0" text="%borrowsTab.dateOfRental" />
+                            <TableColumn fx:id="dateOfReturnColumn" prefWidth="100.0" text="%borrowsTab.dateOfReturn" />
+                              <TableColumn fx:id="bookColumn" prefWidth="200.0" text="%borrowsTab.book" />
+                              <TableColumn fx:id="readerColumn" prefWidth="132.0" text="%borrowsTab.reader" />
                           </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="returnBookMenuItem" mnemonicParsing="false" onAction="#returnBookAction" text="%borrowsMenu.return" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                         </TableView>
                      </children></AnchorPane>
               </content>

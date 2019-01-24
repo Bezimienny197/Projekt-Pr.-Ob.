@@ -23,7 +23,7 @@
         <property name="borrowed" type="boolean">
             <column name="borrowed" not-null="true" />
         </property>
-        <set name="borrows" table="borrow" inverse="true" lazy="true" fetch="select">
+        <set name="borrows" table="borrow" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="id_book" not-null="true" />
             </key>

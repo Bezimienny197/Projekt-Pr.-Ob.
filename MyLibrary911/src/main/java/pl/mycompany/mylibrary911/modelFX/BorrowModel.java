@@ -19,7 +19,7 @@ import pl.mycompany.mylibrary911.utils.exceptions.ApplicationException;
  */
 public class BorrowModel {
     private ObservableList<BorrowFX> borrowList = FXCollections.observableArrayList();
-    private ObjectProperty<BorrowFX> borrow = new SimpleObjectProperty();
+    private ObjectProperty<BorrowFX> borrowProperty = new SimpleObjectProperty();
 
     public ObservableList<BorrowFX> getBorrowList() {
         return borrowList;
@@ -28,11 +28,11 @@ public class BorrowModel {
         this.borrowList = borrowList;
     }
 
-    public ObjectProperty<BorrowFX> getBorrow() {
-        return borrow;
+    public ObjectProperty<BorrowFX> BorrowProperty() {
+        return borrowProperty;
     }
-    public void setBorrow(ObjectProperty<BorrowFX> borrow) {
-        this.borrow = borrow;
+    public void setBorrowProperty(ObjectProperty<BorrowFX> borrowProperty) {
+        this.borrowProperty = borrowProperty;
     }
     
     /** Metoda inicjalizująca ObservableList z bazy danych */
@@ -52,6 +52,12 @@ public class BorrowModel {
     public void saveBorrowInDataBase(Book book, Reader reader, Date dateOfRental, Date dateOfReturn) throws ApplicationException {
         Borrow locBorrow = new Borrow(book, reader, dateOfRental, dateOfReturn);
         BorrowDAO.save(locBorrow);
+        this.initObservableList();
+    }
+    
+    /** Metoda aktualizująca wybrane wypożyczenie (Borrow) w bazie danych i odświeżająca listę */
+    public void updateSelectedBorrowInDataBase() throws ApplicationException {
+        BorrowDAO.update(BorrowConverter.toBorrow(this.borrowProperty.getValue()));
         this.initObservableList();
     }
     

@@ -98,7 +98,10 @@ public class Book  implements java.io.Serializable {
 
    @Override
     public String toString() {
-        return this.getBookName() + " " + this.getPublishingHouse() + " " + this.getPublishmentYear();
+        if (this.publishingHouse.isEmpty()) {
+            return Integer.toString(this.getIdBook()) + " " + this.getBookName() + " " + this.getPublishmentYear();
+        }
+        return  Integer.toString(this.getIdBook()) + " " + this.getBookName() + " " + this.getPublishingHouse() + " " + this.getPublishmentYear();
     }
 
     /** Zwraca tylko tytół i autora książki */

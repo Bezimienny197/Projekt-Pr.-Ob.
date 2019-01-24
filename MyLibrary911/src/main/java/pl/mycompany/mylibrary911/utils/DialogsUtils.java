@@ -12,7 +12,9 @@ import javafx.scene.control.TextArea;
  * @author Aleksander Szepelak
  */
 public class DialogsUtils {
-   static  ResourceBundle bundle = ResourceBundlesUtils.getResourceBundle();
+   
+    /* Zmienna służąca do pobierania String'ów z oddzielnego pliku */
+    static  ResourceBundle bundle = ResourceBundlesUtils.getResourceBundle();
     
    /** Okno dialogowe O aplikacji */
     public static void dialogAboutApplication() {
@@ -25,10 +27,10 @@ public class DialogsUtils {
     }
     
     /** Okno dialogowe Zamknij */
-    public static Optional<ButtonType> confirmationDialog() {
+    public static Optional<ButtonType> confirmationDialog(String titleBundle, String headerBundle) {
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle(bundle.getString("exit.title"));
-        confirmationAlert.setHeaderText(bundle.getString("exit.header"));
+        confirmationAlert.setTitle(bundle.getString(titleBundle));
+        confirmationAlert.setHeaderText(bundle.getString(headerBundle));
         
         Optional<ButtonType> result = confirmationAlert.showAndWait();
         return result;

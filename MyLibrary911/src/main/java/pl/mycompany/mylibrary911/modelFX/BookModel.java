@@ -38,6 +38,12 @@ public class BookModel {
         this.bookList.addAll(BookConverter.toBookFXList(BookDAO.qeryForAll()));
     }
     
+    /** Metoda inicjalizująca ObservableList z bazy danych (pobiera tylko niewypożyczone książki) */
+    public void initNotBorrowedList() throws ApplicationException {
+        this.bookList.clear();
+        this.bookList.addAll(BookConverter.toBookFXList(BookDAO.qeryForNotBorrowed()));
+    }
+    
     /** Metoda zapisująca książkę (Book) w bazie danych i odświeżająca listę */
     public void saveBookInDataBase(String title, String author, int publishmentYear, boolean borrowed) throws ApplicationException {
         Book locBook = new Book(title, author, publishmentYear, borrowed);
@@ -49,6 +55,24 @@ public class BookModel {
     public void saveBookInDataBase(String title, String author, String publishingHouse, int publishmentYear, boolean borrowed) throws ApplicationException {
         Book locBook = new Book(title, author, publishingHouse, publishmentYear, borrowed);
         BookDAO.save(locBook);
+        this.initObservableList();
+    }
+    
+    /** Metoda aktualizująca książką (Book) w bazie danych i odświeżająca listę */
+    public void updateBookInDataBase(Book locBook) throws ApplicationException {
+        BookDAO.update(locBook);
+        this.initObservableList();
+    }
+    
+    /** Metoda aktualizująca książką (Book) w bazie danych i odświeżająca listę */
+    public void updateBookInDataBase(BookFX locBookFX) throws ApplicationException {
+        BookDAO.update(BookConverter.toBook(locBookFX));
+        this.initObservableList();
+    }
+    
+    /** Metoda aktualizująca wybraną książką (Book) w bazie danych i odświeżająca listę */
+    public void updateSelectedBookInDataBase() throws ApplicationException {
+        BookDAO.update(BookConverter.toBook(this.bookProperty.getValue()));
         this.initObservableList();
     }
     

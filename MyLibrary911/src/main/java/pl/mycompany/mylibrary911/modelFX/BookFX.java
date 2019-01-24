@@ -90,7 +90,10 @@ public class BookFX {
    
    @Override
     public String toString() {
-        return this.getBookName() + " " + this.publishingHouseProperty().getValue() + " " + this.publishmentYearProperty().getValue();
+        if (this.publishingHouseProperty().isNull().getValue()) {
+            return Integer.toString(this.idBookProperty().getValue()) + " " + this.getBookName() + " " + this.publishmentYearProperty().getValue();
+        }
+        return Integer.toString(this.idBookProperty().getValue()) + " " + this.getBookName() + " " + this.publishingHouseProperty().getValue() + " " + this.publishmentYearProperty().getValue();
     }
 
     /** Zwraca tytół i autora książki */

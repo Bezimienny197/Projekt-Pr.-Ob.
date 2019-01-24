@@ -15,11 +15,11 @@ public class BorrowConverter {
     public static Borrow toBorrow(BorrowFX borrowFX) {
         Borrow borrow = new Borrow();
         
-        borrow.setIdBorrow(borrowFX.getIdBorrow().getValue());
-        borrow.setBook(borrowFX.getBook().getValue());
-        borrow.setReader(borrowFX.getReader().getValue());
-        borrow.setDateOfRental(borrowFX.getDateOfRental().getValue());
-        borrow.setDateOfReturn(borrowFX.getDateOfReturn().getValue());
+        borrow.setIdBorrow(borrowFX.idBorrowProperty().getValue());
+        borrow.setBook(borrowFX.bookProperty().getValue());
+        borrow.setReader(borrowFX.readerProperty().getValue());
+        borrow.setDateOfRental(borrowFX.dateOfRentalProperty().getValue());
+        borrow.setDateOfReturn(borrowFX.dateOfReturnProperty().getValue());
 
         return borrow;
     }

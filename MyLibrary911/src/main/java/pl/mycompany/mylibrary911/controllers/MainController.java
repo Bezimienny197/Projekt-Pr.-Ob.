@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     /* Zamknij */
     @FXML
     public void closeApplication(ActionEvent actionEvent) {
-        Optional<ButtonType> result = DialogsUtils.confirmationDialog();
+        Optional<ButtonType> result = DialogsUtils.confirmationDialog("exit.title", "exit.header");
         if (result.get() == ButtonType.OK) {
             Platform.exit();
             System.exit(0);

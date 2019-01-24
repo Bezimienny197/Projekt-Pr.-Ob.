@@ -75,7 +75,7 @@ public class Reader  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return this.getFirstName() + " " + this.getLastName();
+        return this.getIdReader() + " " + this.getFirstName() + " " + this.getLastName();
     }
 
 }
