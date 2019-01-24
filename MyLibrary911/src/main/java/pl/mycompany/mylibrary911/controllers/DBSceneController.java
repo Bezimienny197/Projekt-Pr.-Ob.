@@ -144,7 +144,7 @@ public class DBSceneController implements Initializable {
     
     @FXML
     public void deleteReaderMenuAction() {
-        Optional<ButtonType> result = DialogsUtils.confirmationDialog("deleteBook.title", "deleteBook.header");
+        Optional<ButtonType> result = DialogsUtils.confirmationDialog("deleteReader.title", "deleteReader.header");
         if (result.get() == ButtonType.OK) {
             try {
                 this.readerModel.deleteSelectedReaderFromDataBase();

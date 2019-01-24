@@ -48,8 +48,17 @@ public class AddBookController implements Initializable {
             String publishingHouse = publishmentHouseTextField.getText();
             Integer publishmentYear = Integer.parseInt(publishmentYearTextField.getText());
             
-             bookModel.saveBookInDataBase(title, author, publishingHouse, publishmentYear, false);
-        
+            if (this.publishmentHouseTextField.textProperty().isEmpty().getValue()) {
+                bookModel.saveBookInDataBase(title, author, publishmentYear, false);
+            } else {
+                bookModel.saveBookInDataBase(title, author, publishingHouse, publishmentYear, false);
+            }
+            
+            titleTextField.clear();
+            authorTextField.clear();
+            publishmentHouseTextField.clear();
+            publishmentYearTextField.clear();
+            
         } catch (NumberFormatException ex) {
             DialogsUtils.shortErrorDialog(bundle.getString("error.formatPublishmentYear"));
         } catch (ApplicationException ex) {

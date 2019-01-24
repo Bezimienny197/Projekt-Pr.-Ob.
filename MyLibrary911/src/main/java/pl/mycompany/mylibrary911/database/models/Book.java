@@ -98,7 +98,7 @@ public class Book  implements java.io.Serializable {
 
    @Override
     public String toString() {
-        if (this.publishingHouse.isEmpty()) {
+        if (this.publishingHouse == null) {
             return Integer.toString(this.getIdBook()) + " " + this.getBookName() + " " + this.getPublishmentYear();
         }
         return  Integer.toString(this.getIdBook()) + " " + this.getBookName() + " " + this.getPublishingHouse() + " " + this.getPublishmentYear();

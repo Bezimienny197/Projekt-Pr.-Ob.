@@ -43,12 +43,16 @@ public class AddReaderController implements Initializable {
             String firsName = firstNameTextField.getText();
             String lastName = lastNameTextField.getText();
             Integer phoneNumber;
-            if (phoneNumberTextField.getText().equals("")) {
+            if (phoneNumberTextField.textProperty().isEmpty().getValue()) {
                 readerModel.saveReaderInDataBase(firsName, lastName);
             } else {
                 phoneNumber = Integer.parseInt(phoneNumberTextField.getText());
                 readerModel.saveReaderInDataBase(firsName, lastName, phoneNumber);
             }
+            
+            firstNameTextField.clear();
+            lastNameTextField.clear();
+            phoneNumberTextField.clear();
             
         } catch (NumberFormatException ex) {
             DialogsUtils.shortErrorDialog(bundle.getString("error.formatPhoneNumber"));
