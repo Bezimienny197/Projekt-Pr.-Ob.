@@ -1,4 +1,4 @@
-# projekt-Bezimienny197
+﻿# projekt-Bezimienny197
 -Moja biblioteka 97
 
 ## Spis treści
@@ -7,7 +7,7 @@
 * [Screenshots](#screenhots)
 
 ## Informacje ogólne
-### Tytół aplikacji: 
+### Tytuł aplikacji: 
 Moja Biblioteka 97
 
 ### Autor: 
